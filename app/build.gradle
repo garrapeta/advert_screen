@@ -13,12 +13,17 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
     }
 }
 
@@ -71,6 +76,7 @@ dependencies {
     // Glide REF: https://github.com/bumptech/glide
     compile 'com.github.bumptech.glide:glide:3.7.0'
 
+    compile 'com.google.dexmaker:dexmaker:1.2'
 
     // TESTS ---------------------------------------------------------------------------------------
 
@@ -84,8 +90,8 @@ dependencies {
 
     // Mockito
     testCompile "org.mockito:mockito-all:1.10.19"
-    androidTestCompile "org.mockito:mockito-all:1.10.19"
-    androidTestCompile 'com.google.dexmaker:dexmaker:1.2';
 
-    compile 'com.google.dexmaker:dexmaker:1.2'
+    androidTestCompile 'com.google.dexmaker:dexmaker:1.2';
+    androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
 }
