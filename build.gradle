@@ -7,9 +7,11 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.0-beta4'
 
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-    }
+        // Retrolambda REF: http://www.vogella.com/tutorials/Retrolambda/article.html
+        classpath 'me.tatarka:gradle-retrolambda:3.4.0'
+
+        // Dagger2 - Better IDE support for annotations (so Android Studio interacts better with Dagger)
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'    }
 }
 
 allprojects {
