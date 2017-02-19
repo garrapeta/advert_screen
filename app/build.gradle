@@ -46,23 +46,7 @@ dependencies {
     //RxLifecycle
     compile 'com.trello:rxlifecycle:1.0'
 
-    // RxBindings for Retrofit
-    // compile 'com.jakewharton.rxbinding:rxbinding:1.0.0' // REF: https://github.com/JakeWharton/RxBinding
-
-    //Gson
-    // compile 'com.google.code.gson:gson:2.7'
-
-    // OkHttp
-    // compile 'com.squareup.okhttp3:okhttp:3.4.2'
-
-    // Retrofit
-    // compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    // compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    // compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
-
-    // OkHttp logger  REF: https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor
-    // compile 'com.squareup.okhttp3:logging-interceptor:3.5.0' // TODO: no need to include this if !HTTP_LOGGING_ENABLED
-
+    // Dagger
     // Dagger
     apt 'com.google.dagger:dagger-compiler:2.4'
     compile 'com.google.dagger:dagger:2.4'
