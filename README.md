@@ -1,9 +1,9 @@
-### Sergio Torres - Exercise submission 
+# Sergio Torres - Exercise submission 
 
 Thanks for taking the time to look at my code.
 
 
-# Overview
+## Overview
 
 In the interest of time, I have focused more in the backend and architecture than in creating a very detailed UI.
 
