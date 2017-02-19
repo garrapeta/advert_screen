@@ -1,3 +1,43 @@
+### Sergio Torres - Exercise submission 
+
+Thanks for taking the time to look at my code.
+
+
+# Overview
+
+In the interest of time, I have focused more in the backend and architecture than in creating a very detailed UI.
+
+- The app is built using with a clean architecture: data, domain and presentation layers.
+- As time was limited, I'm using the same models across the three layers. Normally, I would have created different models and mappers at each layer.
+- The data layer is based in a Repository. This delegates into a DataSource and adds some behaviour such as data caching. In a real world app, the Repository would have more than one DataSource (ie: NetworkDataSource, 
+SqlLiteDataSource) and would coordinate the synchronization between them.
+- The domain layer connects the data layer to the presentation layer using Interactors, which implement Use Cases.
+- The presentation layer is based in MVP. The presenter has no dependencies to Android classes.
+- The data layer is ultimately connected to the Presenters with RXJava.
+- DI with Dagger2.
+
+
+## Remarkable points
+
+- When the user marks one advert as favourite, the change in the icon in the ActionBar is triggered by an event that the Presenter receives from the Repository. 
+The Presenter is observing the Ad, and when this is updated the Presenter is notified and updates the UI. 
+The UI is synchronized to the Repo, and it is only updated to reflect changes in the resources ultimately originated in the data layer.
+- Although I'm NOT using Loaders, the app does not unnecessarily re-fetch data upon a screen rotation. This is done by caching the loaded Ad in Repository.
+- The data layer and the Presenter done with TDD and have some JUnit4 tests
+
+## What I would have liked to do
+
+- Espresso tests.
+- Two flavours of the app: one "fake" flavour using the fake DataSource, and another using real DataSources (fetching from the web).
+- Integration of the Google Maps view.
+- UI transition with shared elements between one picture and a full-screen picture.
+
+
+Thank you
+
+
+
+
 # Gumtree Android app coding challenge (advert-screen)
 
 ## Before you start ...
