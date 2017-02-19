@@ -88,7 +88,8 @@ public abstract class RxPresenter implements Presenter {
     @NonNull
     @CheckResult
     public <T> LifecycleTransformer<T> bindPresenterUntil(PresenterEvent untilEvent) {
-        return RxLifecycle.bindUntilEvent(mLifecycleSubject, untilEvent);
+        LifecycleTransformer<T> tLifecycleTransformer = RxLifecycle.bindUntilEvent(mLifecycleSubject, untilEvent);
+        return tLifecycleTransformer;
     }
 
     protected final Scheduler uiScheduler() {

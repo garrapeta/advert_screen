@@ -8,29 +8,29 @@ import java.util.UUID;
  */
 public class Advert {
 
-    private final UUID mUUID;
+    public final UUID uuid;
 
-    private final User mSeller;
+    public final User seller;
 
-    private final String mTitle;
+    public final String title;
 
-    private final String mDescription;
+    public final String description;
 
-    private final Coord mLocation;
+    public final Coord location;
 
-    private final String mLocationDesc;
+    public final String locationDesc;
 
-    private final Date mDatePosted;
+    public final Date datePosted;
 
 
     public Advert(UUID uuid, User seller, String title, String description, Coord location, String locationDesc, Date datePosted) {
-        mUUID = uuid;
-        mSeller = seller;
-        mTitle = title;
-        mDescription = description;
-        mLocation = location;
-        mLocationDesc = locationDesc;
-        mDatePosted = datePosted;
+        this.uuid = uuid;
+        this.seller = seller;
+        this.title = title;
+        this.description = description;
+        this.location = location;
+        this.locationDesc = locationDesc;
+        this.datePosted = datePosted;
     }
 
 

@@ -12,21 +12,14 @@ public class AdvertDetailContract {
         void setPresenter(AdvertDetailContract.Presenter presenter);
 
         void showAdvert(Advert advert);
-        
+
+        void showError();
     }
 
     interface Presenter extends com.bitbytebit.cleanframe.presentation.Presenter  {
         void onFavouriteClicked(boolean favourite);
 
         void onShareClicked();
-
-        void onPicturesClicked();
-
-        void onLocationClicked();
-
-        void onCallClicked();
-
-        void onSmsClicked();
 
         void onMessageClicked();
     }

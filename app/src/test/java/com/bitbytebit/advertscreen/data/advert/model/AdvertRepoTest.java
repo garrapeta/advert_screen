@@ -90,6 +90,25 @@ public class AdvertRepoTest {
         subscriber.assertValue(new Maybe<>(expectedAdvert));
     }
 
+    @Test
+    public void getAdvert_wrapsErrors_andDoesNotTerminate() {
+        // GIVEN a data source that errors
+        final Exception expectedError = new Exception();
+        when(mAdvertDataSource
+                .getById(any()))
+                .thenReturn(Observable.error(expectedError));
+
+
+        // WHEN subscribing to observable
+        final TestSubscriber<Maybe<Advert>> subscriber = new TestSubscriber<>();
+        mAdvertRepo.getAdvertObs(UUID.randomUUID()).subscribe(subscriber);
+
+        // THEN:
+        // - the subscriber is notified with a wrapped error
+        subscriber.assertValue(new Maybe<>(expectedError));
+        // - and is not completed
+        subscriber.assertNotCompleted();
+    }
 
     @Test
     public void favouriteAdvert_delegatesIntoDataSource_andNotifiesSubscribers() {

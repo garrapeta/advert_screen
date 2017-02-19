@@ -7,19 +7,19 @@ import java.util.UUID;
  */
 public class User {
 
-    private final UUID mUUID;
+    public final UUID uuid;
 
-    private final String mFirstName;
+    public final String firstName;
 
-    private final Integer mPhoneNumber;
+    public final Integer phoneNumber;
 
-    private final String mEmail;
+    public final String email;
 
     public User(UUID uuid, String firstName, Integer phoneNumber, String email) {
-        mUUID = uuid;
-        mFirstName = firstName;
-        mPhoneNumber = phoneNumber;
-        mEmail = email;
+        this.uuid = uuid;
+        this.firstName = firstName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
     }
 
 
