@@ -1,4 +1,4 @@
-package com.bitbytebit.advertscreen.presentation.AdvertDetail;
+package com.bitbytebit.advertscreen.presentation.advert_detail;
 
 import com.bitbytebit.advertscreen.data.advert.model.Advert;
 
@@ -7,7 +7,7 @@ import com.bitbytebit.advertscreen.data.advert.model.Advert;
  */
 public class AdvertDetailContract {
 
-    interface View extends  com.bitbytebit.cleanframe.presentation.View {
+    public interface View extends  com.bitbytebit.cleanframe.presentation.View {
 
         void setPresenter(AdvertDetailContract.Presenter presenter);
 

@@ -2,6 +2,7 @@ package com.bitbytebit.advertscreen.data.advert.model;
 
 
 import com.bitbytebit.advertscreen.data.advert.AdvertDataSource;
+import com.bitbytebit.advertscreen.data.advert.AdvertRepo;
 import com.bitbytebit.advertscreen.data.common.Maybe;
 
 import junit.framework.Assert;

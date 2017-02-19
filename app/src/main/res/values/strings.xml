@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">AdvertScreen</string>
+    <string name="date_posted">Date posted</string>
+    <string name="message">message</string>
+    <string name="price">£%1$s</string>
+    <string name="error_generic">\"Ops, something went wrong\"</string>
+    <string name="favourite">Favourite</string>
+    <string name="share">Share</string>
 </resources>

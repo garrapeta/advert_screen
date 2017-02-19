@@ -1,6 +1,7 @@
-package com.bitbytebit.advertscreen.data.advert.model;
+package com.bitbytebit.advertscreen.data.advert;
 
 import com.bitbytebit.advertscreen.data.advert.AdvertDataSource;
+import com.bitbytebit.advertscreen.data.advert.model.Advert;
 import com.bitbytebit.advertscreen.data.common.Maybe;
 import com.bitbytebit.advertscreen.data.common.MaybeWrapperOperator;
 

@@ -1,18 +1,23 @@
 package com.bitbytebit.advertscreen.domain.advert;
 
 import com.bitbytebit.advertscreen.data.advert.model.Advert;
-import com.bitbytebit.advertscreen.data.advert.model.AdvertRepo;
+import com.bitbytebit.advertscreen.data.advert.AdvertRepo;
 import com.bitbytebit.cleanframe.domain.RxUseCase;
 
 import java.util.UUID;
 
+import javax.inject.Inject;
+
 import rx.Observable;
 
-
+/**
+ * Use case to mark one {@link Advert} as favourite
+ */
 public class FavouriteAdvert implements RxUseCase<FavouriteAdvert.RequestModel, Advert> {
 
     private final AdvertRepo mAdvertRepo;
 
+    @Inject
     public FavouriteAdvert(AdvertRepo advertRepo) {
         mAdvertRepo = advertRepo;
     }

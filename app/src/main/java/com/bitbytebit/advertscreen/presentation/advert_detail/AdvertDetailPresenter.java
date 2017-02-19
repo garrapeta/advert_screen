@@ -1,14 +1,19 @@
-package com.bitbytebit.advertscreen.presentation.AdvertDetail;
+package com.bitbytebit.advertscreen.presentation.advert_detail;
+
+import android.content.ActivityNotFoundException;
 
 import com.bitbytebit.advertscreen.data.advert.model.Advert;
 import com.bitbytebit.advertscreen.domain.advert.FavouriteAdvert;
 import com.bitbytebit.advertscreen.domain.advert.GetAdvert;
-import com.bitbytebit.advertscreen.domain.advert.MessageAdvert;
+import com.bitbytebit.advertscreen.domain.advert.MessageSeller;
 import com.bitbytebit.advertscreen.domain.advert.ShareAdvert;
 import com.bitbytebit.cleanframe.presentation.RxPresenter;
 import com.bitbytebit.cleanframe.presentation.SchedulerProvider;
 
 import java.util.UUID;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 public class AdvertDetailPresenter extends RxPresenter implements AdvertDetailContract.Presenter {
 
@@ -16,25 +21,26 @@ public class AdvertDetailPresenter extends RxPresenter implements AdvertDetailCo
     private final GetAdvert mGetAdvert;
     private final FavouriteAdvert mFavouriteAdvert;
     private final ShareAdvert mShareAdvert;
-    private final MessageAdvert mMessageAdvert;
+    private final MessageSeller mMessageSeller;
 
     private final UUID mAdvertUUID;
     private Advert mAdvert;
 
+    @Inject
     public AdvertDetailPresenter(SchedulerProvider schedulerProvider,
                                  AdvertDetailContract.View view,
                                  GetAdvert getAdvert,
                                  FavouriteAdvert favouriteAdvert,
                                  ShareAdvert shareAdvert,
-                                 MessageAdvert messageAdvert,
-                                 UUID advertUUID) {
+                                 MessageSeller messageSeller,
+                                 @Named("advertUUID") UUID advertUUID) {
         super(schedulerProvider);
 
         mView = view;
         mGetAdvert = getAdvert;
         mFavouriteAdvert = favouriteAdvert;
         mShareAdvert = shareAdvert;
-        mMessageAdvert = messageAdvert;
+        mMessageSeller = messageSeller;
         mAdvertUUID = advertUUID;
     }
 
@@ -46,7 +52,10 @@ public class AdvertDetailPresenter extends RxPresenter implements AdvertDetailCo
                 .subscribeOn(ioScheduler())
                 .observeOn(uiScheduler())
                 .compose(bindPresenterUntil(PresenterEvent.STOP))
-                .subscribe(advert -> mView.showAdvert(advert), throwable -> mView.showError());
+                .subscribe(advert -> {
+                    mAdvert = advert;
+                    mView.showAdvert(advert);
+                }, throwable -> mView.showError());
     }
 
     @Override
@@ -60,12 +69,20 @@ public class AdvertDetailPresenter extends RxPresenter implements AdvertDetailCo
 
     @Override
     public void onShareClicked() {
-        mShareAdvert.execute(mAdvert);
+        try {
+            mShareAdvert.execute(mAdvert);
+        } catch (ActivityNotFoundException e) {
+            mView.showError();
+        }
     }
 
     @Override
     public void onMessageClicked() {
-        mMessageAdvert.execute(mAdvert);
+        try {
+            mMessageSeller.execute(mAdvert);
+        } catch (ActivityNotFoundException e) {
+            mView.showError();
+        }
     }
 
 }

@@ -21,9 +21,9 @@ public interface AdvertDataSource {
      * Sets one {@link Advert} as favourite (starred)
      *
      * @param userId id of the user who is setting the ad as favourite
-     * @param adId id of the {@link Advert}
+     * @param addId id of the {@link Advert}
      * @param isFavourite
      * @return
      */
-    Observable<Advert> setFavourite(UUID userId, UUID adId, boolean isFavourite);
+    Observable<Advert> setFavourite(UUID userId, UUID addId, boolean isFavourite);
 }

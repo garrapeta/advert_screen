@@ -1,9 +1,9 @@
-package com.bitbytebit.advertscreen.presentation.AdvertDetail;
+package com.bitbytebit.advertscreen.presentation.advert_detail;
 
 import com.bitbytebit.advertscreen.data.advert.model.Advert;
 import com.bitbytebit.advertscreen.domain.advert.FavouriteAdvert;
 import com.bitbytebit.advertscreen.domain.advert.GetAdvert;
-import com.bitbytebit.advertscreen.domain.advert.MessageAdvert;
+import com.bitbytebit.advertscreen.domain.advert.MessageSeller;
 import com.bitbytebit.advertscreen.domain.advert.ShareAdvert;
 import com.bitbytebit.cleanframe.presentation.ImmediateSchedulersProvider;
 
@@ -47,14 +47,14 @@ public class AdvertDetailPresenterTest {
     private UUID mAdUuid;
 
     @Mock
-    private MessageAdvert mMessageAdvert;
+    private MessageSeller mMessageSeller;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         mAdUuid = UUID.randomUUID();
 
-        mAdvertDetailPresenter = new AdvertDetailPresenter(new ImmediateSchedulersProvider(), mView, mGetAdvert, mFavouriteAdvert, mShareAdvert, mMessageAdvert, mAdUuid);
+        mAdvertDetailPresenter = new AdvertDetailPresenter(new ImmediateSchedulersProvider(), mView, mGetAdvert, mFavouriteAdvert, mShareAdvert, mMessageSeller, mAdUuid);
     }
 
 
@@ -146,6 +146,6 @@ public class AdvertDetailPresenterTest {
     public void onMessageClicked_executesUseCase() {
         mAdvertDetailPresenter.onMessageClicked();
 
-        verify(mMessageAdvert, VerificationModeFactory.times(1)).execute(any());
+        verify(mMessageSeller, VerificationModeFactory.times(1)).execute(any());
     }
 }
