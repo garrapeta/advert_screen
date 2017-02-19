@@ -111,7 +111,7 @@ public class AdvertRepoTest {
 
 
         // WHEN favouriting the advert
-        final TestSubscriber<Void> favSubscriber = new TestSubscriber<>();
+        final TestSubscriber<Advert> favSubscriber = new TestSubscriber<>();
         mAdvertRepo.setFavourite(expectedUserUuid, expectedAdUUid, expectedFavValue).subscribe(favSubscriber);
 
         // THEN:
@@ -120,7 +120,7 @@ public class AdvertRepoTest {
         verify(mAdvertDataSource, VerificationModeFactory.times(1))
                 .setFavourite(eq(expectedUserUuid), eq(expectedAdUUid), eq(expectedFavValue));
 
-        favSubscriber.assertValueCount(1);
+        favSubscriber.assertValue(expectedFavouriteAdvert);
 
         // - the subscriber is notified (one for when subscribed, another for the change)
         adSubscriber.assertValueCount(2);

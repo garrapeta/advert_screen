@@ -2,6 +2,7 @@ package com.bitbytebit.advertscreen.data.advert.model;
 
 import com.bitbytebit.advertscreen.data.advert.AdvertDataSource;
 import com.bitbytebit.advertscreen.data.common.Maybe;
+import com.bitbytebit.advertscreen.data.common.MaybeWrapperOperator;
 
 import java.util.UUID;
 
@@ -31,7 +32,16 @@ public class AdvertRepo {
      * @return
      */
     public Observable<Maybe<Advert>> getAdvertObs(UUID uuid) {
-        return null;
+
+        if (mAdvertSubject.getValue() != null) {
+            // return if cached
+            return mAdvertSubject;
+        }
+
+        return mDataSource.getById(uuid)
+                .lift(new MaybeWrapperOperator<>())
+                .doOnNext(mAdvertSubject::onNext)
+                .flatMap(advertMaybe -> mAdvertSubject);
     }
 
     /**
@@ -43,8 +53,11 @@ public class AdvertRepo {
      * @param uuid
      * @return
      */
-    public Observable<Void> setFavourite(UUID userId, UUID uuid, boolean favourite) {
-        return null;
+    public Observable<Advert> setFavourite(UUID userId, UUID uuid, boolean favourite) {
+        return mDataSource.setFavourite(userId, uuid, favourite)
+                .lift(new MaybeWrapperOperator<>())
+                .doOnNext(mAdvertSubject::onNext)
+                .map(Maybe::getValue);
     }
 
 }
